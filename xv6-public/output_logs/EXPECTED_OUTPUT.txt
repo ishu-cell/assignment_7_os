@@ -1,0 +1,28 @@
+EXPECTED OUTPUT GUIDE (NOT A CAPTURED QEMU LOG)
+
+Run each program inside xv6 and save the genuine terminal transcript here.
+The exact scheduling order can differ, so do not submit this file as a screenshot/log claiming it was captured.
+
+Q1 should contain:
+- Initial state SAFE
+- Safe sequence containing P1, P3, P4, P0, P2
+- P1 request 1 0 2: GRANTED safely
+- P0 request 0 0 2: denied because the simulated state is unsafe
+
+Q2 should contain:
+- NO-DEADLOCK scenario and an acyclic graph
+- DEADLOCK scenario with edges P0 -> P1, P1 -> P2, P2 -> P0
+- Printed cycle containing P0 -> P1 -> P2 -> P0 (cycle rotation/reversal is also possible)
+
+Q3 should contain:
+- BAD ORDER phase
+- A waits for Lock2 and B waits for Lock1
+- timeout and cleanup
+- FIXED ORDER phase
+- both processes acquire Lock1 then Lock2 and complete
+
+Q4 should contain:
+- five processes P0..P4
+- resource request/grant/work/release messages
+- all five processes finish all cycles
+- final message that no deadlock occurred
